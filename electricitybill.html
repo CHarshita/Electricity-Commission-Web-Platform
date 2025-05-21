@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #007bff;
+            color: black;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .menu {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .container {
+            background-color: rgb(155, 177, 248);
+            padding: 35px;
+            border-radius: 0px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 700px;
+            text-align: left;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: left;
+            text-align: left;
+            padding: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .quick-links {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+        .result {
+            font-size: 22px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 90%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 255, 255);
+            /* Set a neutral background for the main content */
+            color: black;
+            /* Adjust text color accordingly */
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #0D1B2A;
+            /* Keep the footer blue */
+            color: white;
+            /* Ensure text remains readable */
+        }
+
+        .footer div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .footer h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin: 8px 0;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .important-links img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px;
+            background-color: #091521;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Top Bar Styling */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366; /* Blue background */
+            color: white;
+            padding: 10px 20px;
+            
+        }
+        
+        /* Centered Separator */
+        .separator {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-icon {
+            font-size: 18px;
+        }
+        
+        
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Social Section */
+        .social-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Accessibility Section */
+        .accessibility-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Font Size Section */
+        .font-size-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .font-size-section button {
+            padding: 5px 10px;
+            border: 1px solid #000;
+            background-color: white; /* White Background */
+            color: #003366; /* Blue Text */
+           
+            cursor: pointer;
+        }
+        
+        .font-size-section button:hover {
+            background-color: #f0f0f0; /* Light Gray on Hover */
+        }
+        
+        /* Language Section */
+        .language-section {
+            margin-left: 20px;
+        }
+        
+        .language-section button {
+            background-color: #ff007f; /* Pink */
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .back-button {
+            position: relative;
+            top: 30px;
+            left: 30px;
+            background-color: #003366;
+            color: white;
+            width: 80px;
+            height: 50px;
+            font-size: 0px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #002244;
+        }
+        .back-button::before {
+            content: "Back";
+            font-size: 16px;
+            color: white;
+            display: block;
+            text-align: center;
+            line-height: 30px;
+        }
+        .scroll-box {
+            width: 500px;
+            height: 612px;
+            overflow-y: scroll;
+            border: 2px solid black;
+            padding: 10px;
+            text-align: left;
+            position: absolute;
+            right: 20px; /* Moves it to the right */
+            top: 200px; /* Adjusts vertical positioning */
+        }
+        .Phase label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    
+    <header class="top-bar">
+        <!-- Menu Section -->
+        <div class="menu-section" onclick="toggleMenu()">
+            <span class="menu-icon">☰</span>
+            <span class="menu-text">Menu</span>
+        </div>
+    
+        <span class="separator">|</span> <!-- Centered Separator -->
+    
+        <!-- Toll-Free Section -->
+        <div class="contact-section">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&s" alt="Home Icon" class="icon home-icon">
+            <span>Toll Free - 1950</span>
+        </div>
+    
+        <span class="separator">|</span> <!-- Centered Separator -->
+    
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook" class="icon"></a>
+            <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="icon"></a>
+            <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg" alt="Twitter" class="icon"></a>
+            <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube" class="icon"></a>
+        </div>
+    
+        <span class="separator">|</span> <!-- Centered Separator -->
+    
+        <!-- Accessibility Links -->
+        <div class="accessibility-section">
+            <a >Screen Reader Access</a>
+            <span class="separator">|</span>
+            <a>Skip to Main Content</a>
+        </div>
+    
+        <span class="separator">|</span> <!-- Centered Separator -->
+    
+        <!-- Font Size Controls -->
+        <div class="font-size-section">
+            <button>English+</button>
+            <span class="separator">|</span>
+            <button>Hindi+</button>
+        </div>
+    
+        <span class="separator">|</span> <!-- Centered Separator -->
+    
+        <!-- Logout Button -->
+        <div class="language-section">
+            <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out of your account">
+                Logout
+            </button>
+        </div>
+    </header>
+    <button class="back-button" onclick="goBack()">Back</button>
+<br>
+<br>
+    
+    <script>
+        function toggleMenu() {
+            
+            alert("Menu Clicked! Implement menu functionality.");
+        }
+        function goBack() {
+        window.history.back();}
+    </script>
+    
+    </body>
+    </html>
+    <script>
+        function toggleMenu() {
+            alert("Menu clicked! Implement menu functionality here.");
+        }
+    </script>
+    
+    
+    </body>
+    </html>
+   
+    
+    
+    <div class="content">
+        <div class="container">
+            <label>Tariff:</label>
+            <select id="tariff">
+                <option value="6.50">LT-6F</option>
+                <option value="5.80">LT-5A</option>
+                <option value="7.20">HT-2B</option>
+            </select>
+            <br>
+            <br>
+            <label>Purpose:</label>
+            <select id="purpose">
+                <option value="Construction">Construction</option>
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+            </select>
+            <br><br>
+            <label>Consumed Units (kWh):</label>
+            <input type="number" id="consumedUnits" placeholder="Enter consumed units">
+            <br>
+            <label>Phase:</label>
+            <input type="radio" name="phase" value="Single" checked> <label for="single">Single</label>
+            <br>
+            <input type="radio" name="phase" value="Three"> <label for="three">Three</label>
+            <br>
+            <br>
+            <label>Connected Load (W):</label>
+            <input type="number" id="connectedLoad" placeholder="Enter connected load">
+            <br>
+            <button onclick="calculateBill()">Calculate Bill</button>
+            <div class="result" id="billAmount"></div>
+        </div>
+    </div>
+
+    <div class="scroll-box">
+        <h3>Electricity Bill Definitions</h3>
+        <p><strong>1. Units Consumed (kWh):</strong> 
+            Electricity is measured in kilowatt-hours (kWh), which represents the amount of energy consumed over time.</p>
+            
+            <p><strong>Formula:</strong><br>
+                Energy Consumed (kWh)=Power (kW)xTime(hours)</p>
+            
+            <p><strong>Example:</strong> A 100W fan running for 10 hours will consume:
+            0.1x10=1kWh(or 1 unit)
+            </p>
+            
+            <p><strong>2. Tariff Slabs:</strong><br>
+            Electricity charges are calculated based on the units consumed. Here’s a common slab system:</p>
+            
+            <ul>
+                <li>0 - 100 units: ₹3.00/unit</li>
+                <li>101 - 200 units: ₹4.50/unit</li>
+                <li>201 - 500 units: ₹6.50/unit</li>
+                <li>Above 500 units: ₹8.00/unit</li>
+            </ul>
+    
+            <p><strong>3. Additional Charges:</strong><br>
+            In addition to the energy charges, other costs may be added to the bill:</p>
+            
+            <ul>
+                <li><strong>Fixed Charges:</strong> A constant charge based on the load of electrical appliances in the household (e.g., 1 kW).</li>
+                <li><strong>Fuel Adjustment Charge (FAC):</strong> An additional charge that adjusts based on the fluctuations in fuel prices for electricity generation.</li>
+                <li><strong>Meter Rent:</strong> A small monthly charge for the maintenance of the electricity meter.</li>
+                <li><strong>Electricity Duty:</strong> State-level taxes that may apply to the total bill.</li>
+                <li><strong>GST:</strong> Goods and Services Tax, which is applied to the final bill amount.</li>
+            </ul>
+    
+            <p><strong>4. Final Bill Calculation:</strong><br>
+            The final electricity bill is calculated as follows:</p>
+            
+            <ul>
+                <li><strong>Total Energy Charges:</strong> Total units consumed × rate per unit (based on the applicable tariff slab).</li>
+                <li><strong>Fixed Charges:</strong> A flat fee based on connected load.</li>
+                <li><strong>FAC:</strong> Fuel cost adjustments (if applicable).</li>
+                <li><strong>Taxes and Duties:</strong> GST and electricity duty.</li>
+            </ul>
+            
+            <p><strong>Example Calculation:</strong><br>
+            Let’s say a household consumes 350 units of electricity. The calculation would be as follows:</p>
+            
+            <ul>
+                <li>First 100 units × ₹3/unit = ₹300</li>
+                <li>Next 100 units × ₹4.50/unit = ₹450</li>
+                <li>Remaining 150 units × ₹6.50/unit = ₹975</li>
+                <li>Total Energy Charges = ₹300 + ₹450 + ₹975 = ₹1,725</li>
+                <li>Fixed Charges = ₹100</li>
+                <li>Fuel Adjustment Charge = ₹50</li>
+                <li>GST (18%) = ₹355.50</li>
+                <li>Total Bill = ₹1,725 + ₹100 + ₹50 + ₹355.50 = ₹2,230.50</li>
+            </ul>
+    
+            <p><strong>5. Government Subsidies:</strong><br>
+            Government subsidies may be available for certain consumers, including low-income households or rural areas. These subsidies aim to reduce the financial burden of electricity bills.</p>
+    
+            <p><strong>6. Time-of-Day Tariff:</strong><br>
+            Some electricity providers offer time-of-day (ToD) tariffs, where the rate is lower during off-peak hours (e.g., midnight to early morning) and higher during peak hours (e.g., evening). This encourages consumers to shift usage to low-cost periods.</p>
+    
+            <p><strong>7. Smart Metering:</strong><br>
+            Many areas are now installing smart meters, which allow real-time monitoring of electricity consumption and provide accurate billing based on actual usage rather than estimates.</p>
+    </div>
+    <br>
+    <br>
+
+    
+    
+    <footer class="footer">
+        <div>
+           
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Disclaimer & Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>IMPORTANT LINKS</h3>
+            <ul class="important-links">
+                <li><a href="#">Central Electricity Regulatory Commission</a></li>
+                <li><a href="#">Ministry of Power Government of India</a></li>
+                <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li>
+                <li><a href="#">Central Electricity Authority</a></li>
+                <li><a href="#">NTPC Limited</a></li>
+                <li><a href="#">Central Power Research Institute (CPRI)</a></li>
+                <li><a href="#"></a> Damodar Valley Corporation (DVC)</li>
+                <li><a href="#">National Power Training Institute (NPTI)</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>HEADQUARTERS</h3>
+            <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+            <br>
+            <h3>Terms & Conditions</h3>
+            <p>Though all efforts have been made to ensure the accuracy and currency of the content on this website, the
+                same should not be construed as a statement of law or used for any legal purposes. In case of any
+                ambiguity or doubts, users are advised to verify / check with the Department(s) and / or other
+                source(s), and to obtain appropriate professional advice.</p>
+        </div>
+        <div>
+            <h3>About Government Of India Ministry Of Power</h3>
+            <br>
+            <p>This is the Official Portal of the Government of India, designed, developed and hosted by the National
+                Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the
+                Ministry of Electronics & Information Technology.</p>
+            <br>
+            <div class="social-icons">
+                <a href="https://x.com/?lang=en"><img
+                        src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid"
+                        alt="X"></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622"
+                        alt="Instagram"></a>
+                <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><img
+                        src="https://img.freepik.com/premium-vector/linkedin-square-logo-vector_667864-115.jpg?w=826"
+                        alt="LinkedIn"></a>
+                <a href="https://www.youtube.com/"><img
+                        src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png"
+                        alt="Facebook"></a>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        &copy; 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved.
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1
+            Hosted by National Informatics Centre (NIC)
+        </p>
+        <p>Last Updated on: 27 Mar 2025</p>
+        <br>
+    </div>
+
+    
+
+    <script>
+        function calculateBill() {
+            const unitRate = parseFloat(document.getElementById("tariff").value);
+            const consumedUnits = parseFloat(document.getElementById("consumedUnits").value);
+            
+            if (isNaN(consumedUnits) || consumedUnits <= 0) {
+                document.getElementById("billAmount").innerHTML = "<strong>Please enter valid consumed units.</strong>";
+                return;
+            }
+            
+            const billAmount = consumedUnits * unitRate;
+            document.getElementById("billAmount").innerHTML = `<strong>Total Bill:</strong> ${billAmount.toFixed(2)} Currency Units`;
+        }
+    </script>
+</body>
+</html>
+

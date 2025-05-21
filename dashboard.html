@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, hsl(214, 100%, 99%), #f3f4f5);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 15px auto;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-weight: bold;
+        }
+        .monthly {
+            background: linear-gradient(135deg, hsl(192, 100%, 80%), #4580d8);
+            color: #333;
+        }
+        .historic {
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            color: #333;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .info {
+            margin-top: 10px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        <!---header css-->
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Top Bar Styling */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366; /* Blue background */
+            color: white;
+            padding: 10px 20px;
+            
+        }
+        
+        /* Centered Separator */
+        .separator {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-icon {
+            font-size: 18px;
+        }
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Social Section */
+        .social-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Accessibility Section */
+        .accessibility-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Font Size Section */
+        .font-size-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .font-size-section button {
+            padding: 5px 10px;
+            border: 1px solid #000;
+            background-color: white; /* White Background */
+            color: #003366; /* Blue Text */
+            
+            cursor: pointer;
+        }
+        
+        .font-size-section button:hover {
+            background-color: #f0f0f0; /* Light Gray on Hover */
+        }
+        
+        /* Language Section */
+        .language-section {
+            margin-left: 20px;
+        }
+        
+        .language-section button {
+            background-color: #ff007f; /* Pink */
+            border: none;
+            color: white;
+            padding: 5px 15px;
+           
+            cursor: pointer;
+        }
+        
+        .language-section button:hover {
+            background-color: #e60073; /* Slightly Darker Pink */
+        }
+        .back-btn {
+            position: relative;
+            top: 30px;
+            left: 30px;
+            background-color: #003366;
+            color: white;
+            width: 80px;
+            height: 50px;
+            font-size: 0px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-btn:hover {
+            background-color: #002244;
+        }
+        .back-btn::before {
+            content: "Back";
+            font-size: 16px;
+            color: white;
+            display: block;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        /*footer*/
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white; /* Set a neutral background for the main content */
+            color: black; /* Adjust text color accordingly */
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #0D1B2A; /* Keep the footer blue */
+            color: white; /* Ensure text remains readable */
+        }
+        
+        .footer div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+        .footer h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            margin: 8px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .social-icons a {
+            display: inline-block;
+            margin: 5px;
+        }
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+        .important-links img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 10px;
+            background-color: #091521;
+            font-size: 14px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Header with Separators</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Header</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <!-- Menu Section -->
+    <div class="menu-section" onclick="toggleMenu()">
+        <span class="menu-icon">☰</span>
+        <span class="menu-text">Menu</span>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Toll-Free Section -->
+    <div class="contact-section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&s" alt="Home Icon" class="icon home-icon">
+        <span>Toll Free - 1950</span>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Social Media Section -->
+    <div class="social-section">
+        <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook" class="icon"></a>
+        <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="icon"></a>
+        <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg" alt="Twitter" class="icon"></a>
+        <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube" class="icon"></a>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Accessibility Links -->
+    <div class="accessibility-section">
+        <a >Screen Reader Access</a>
+        <span class="separator">|</span>
+        <a>Skip to Main Content</a>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Font Size Controls -->
+    <div class="font-size-section">
+        <button>English+</button>
+        <span class="separator">|</span>
+        <button>Hindi+</button>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Logout Button -->
+    <div class="language-section">
+        <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out of your account">
+            Logout
+        </button>
+    </div>
+</header>
+<button class="back-btn" onclick="goBack()">Back</button>
+<br>
+<br>
+
+<script>
+    function toggleMenu() {
+        alert("Menu Clicked! Implement menu functionality.");
+    }
+</script>
+
+</body>
+</html>
+<script>
+    function toggleMenu() {
+        alert("Menu clicked! Implement menu functionality here.");
+    }
+</script>
+
+</body>
+</html>
+
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        
+        <a href="monthly.html">
+            <button class="btn monthly">Monthly Data</button>
+        </a>
+        
+        <p class="info" id="monthlyInfo">Monthly data provides insights into recent trends, allowing for short-term analysis and decision-making.</p>
+        <a href="yearly.html">
+        <button class="btn historic" onclick="showInfo('historic')"> Historic Data</button>
+        </a>
+        <p class="info" id="historicInfo">Historic data helps analyze long-term trends and patterns, essential for strategic planning and forecasting.</p>
+    </div>
+    <br>
+    <br>
+    <footer class="footer">
+        <div>
+            <h3>QUICK LINKS</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Disclaimer & Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>IMPORTANT LINKS</h3>
+            <ul class="important-links">
+                <li><a href="#">Central Electricity Regulatory Commission</a></li>
+                <li><a href="#">Ministry of Power Government of India</a></li>
+                <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li>
+                <li><a href="#">Central Electricity Authority</a></li>
+                <li><a href="#">NTPC Limited</a></li>
+                <li><a href="#">Central Power Research Institute (CPRI)</a></li>
+                <li><a href="#"></a> Damodar Valley Corporation (DVC)</li>
+                <li><a href="#">National Power Training Institute (NPTI)</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>HEADQUARTERS</h3>
+            <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+            <br>
+            <h3>Terms & Conditions</h3>
+            <p>Though all efforts have been made to ensure the accuracy and currency of the content on this website, the
+                same should not be construed as a statement of law or used for any legal purposes. In case of any
+                ambiguity or doubts, users are advised to verify / check with the Department(s) and / or other
+                source(s), and to obtain appropriate professional advice.</p>
+        </div>
+        <div>
+            <h3>About Government Of India Ministry Of Power</h3>
+            <br>
+            <p>This is the Official Portal of the Government of India, designed, developed and hosted by the National
+                Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the
+                Ministry of Electronics & Information Technology.</p>
+            <br>
+            <div class="social-icons">
+                <a href="https://x.com/?lang=en"><img
+                        src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid"
+                        alt="X"></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622"
+                        alt="Instagram"></a>
+                <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><img
+                        src="https://img.freepik.com/premium-vector/linkedin-square-logo-vector_667864-115.jpg?w=826"
+                        alt="LinkedIn"></a>
+                <a href="https://www.youtube.com/"><img
+                        src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png"
+                        alt="Facebook"></a>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        &copy; 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved.
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1
+            Hosted by National Informatics Centre (NIC)
+        </p>
+        <p>Last Updated on: 27 Mar 2025</p>
+        
+    </div>
+
+    <script>
+        
+        function goBack() {
+        window.history.back();}
+    </script>
+</body>
+</html>
+
+

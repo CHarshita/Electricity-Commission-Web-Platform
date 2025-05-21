@@ -1,0 +1,689 @@
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Know Your Outage | Electricity Board</title> 
+    <style> 
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #f5f5f5; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        } 
+ 
+        .top-bar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: #003366; 
+            color: white; 
+            padding: 15px 40px;  
+            width: 100%; 
+            box-sizing: border-box; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        } 
+ 
+        .separator { 
+            color: white; 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin: 0 15px;  
+        } 
+ 
+        .menu-section { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            gap: 10px;  
+        } 
+ 
+        .menu-icon { 
+            font-size: 20px; 
+        } 
+ 
+        .contact-section { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;  
+        } 
+ 
+        .contact-section .icon { 
+            width: 24px; 
+            height: auto; 
+        } 
+ 
+        /* Social Section */ 
+        .social-section { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        } 
+ 
+        .social-section .icon { 
+            width: 24px; 
+            height: auto; 
+        } 
+ 
+        /* Accessibility Section */ 
+        .accessibility-section { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;  
+        } 
+ 
+        /* Font Size Section */ 
+        .font-size-section { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        } 
+ 
+        .font-size-section button { 
+            padding: 6px 12px;  
+            border: 1px solid #000; 
+            background-color: white; 
+            color: #003366; 
+            cursor: pointer; 
+            font-size: 16px;  
+        } 
+ 
+        .font-size-section button:hover { 
+            background-color: #f0f0f0; 
+        } 
+ 
+        /* Language Section */ 
+        .language-section { 
+            margin-left: 30px; 
+        } 
+ 
+        .language-section button { 
+            background-color: #ff007f; 
+            border: none; 
+            color: white; 
+            padding: 6px 18px; 
+            cursor: pointer; 
+            font-size: 16px; 
+        } 
+ 
+        .language-section button:hover { 
+            background-color: #e60073; 
+        } 
+ 
+        /* Back Button Styling */ 
+        .back-button-container { 
+            padding: 20px 40px; 
+            text-align: left; 
+            width: 100%; 
+            box-sizing: border-box; 
+        } 
+ 
+        .back-button { 
+            background-color: #003366; 
+            color: white; 
+            border: none; 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px; 
+            transition: background-color 0.3s; 
+            width: auto;  
+        } 
+ 
+        .back-button:hover { 
+            background-color: #002244; 
+        } 
+ 
+        /* Main Content CSS */ 
+        .main-content { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 20px; 
+            margin-bottom: 150px; 
+        } 
+ 
+        .container { 
+            background-color: white; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            width: 90%; 
+            max-width: 500px; 
+            overflow: hidden; 
+            margin-top: 20px; 
+        } 
+ 
+        h1 { 
+            background-color: #0099e5; 
+            color: white; 
+            padding: 20px; 
+            text-align: center; 
+            font-size: 24px; 
+            font-weight: bold; 
+            margin: 0; 
+        } 
+ 
+        .form-group { 
+            margin-top: 20px; 
+            margin-bottom: 20px; 
+            padding-left: 30px; 
+            padding-right: 30px; 
+        } 
+ 
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: #34495e; 
+        } 
+ 
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+        } 
+ 
+        button { 
+            background-color: #3498db; 
+            color: white; 
+            border: none; 
+            padding: 12px 20px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            width: 100%; 
+            margin-top: 10px; 
+            transition: background-color 0.3s; 
+        } 
+ 
+        button:hover { 
+            background-color: #2980b9; 
+        } 
+ 
+        .info-card { 
+            background-color: #f9f9f9; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+        } 
+ 
+        .info-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 15px; 
+        } 
+ 
+        .label { 
+            font-weight: bold; 
+            color: #34495e; 
+        } 
+ 
+        .value { 
+            color: #2c3e50; 
+        } 
+ 
+        textarea { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+            margin-bottom: 10px; 
+            min-height: 100px; 
+            resize: vertical; 
+        } 
+ 
+        #captcha-text { 
+            font-weight: bold; 
+            color: #e74c3c; 
+            font-size: 18px; 
+            letter-spacing: 2px; 
+        } 
+ 
+        /* Footer CSS */ 
+        .footer { 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 30px; 
+            background-color: #0D1B2A; 
+            color: white; 
+            flex-wrap: wrap; 
+        } 
+ 
+        .footer div { 
+            flex: 1; 
+            min-width: 200px; 
+            margin: 10px; 
+        } 
+         
+        .footer h3 { 
+            font-size: 18px; 
+            font-weight: bold; 
+        } 
+         
+        .footer ul { 
+            list-style: none; 
+            padding: 0; 
+        } 
+         
+        .footer ul li { 
+            margin: 8px 0; 
+        } 
+         
+        .footer a { 
+            color: white; 
+            text-decoration: none; 
+        } 
+         
+        .footer a:hover { 
+            text-decoration: underline; 
+        } 
+         
+        .social-icons a { 
+            display: inline-block; 
+            margin: 5px; 
+        } 
+         
+        .social-icons img { 
+            width: 30px; 
+            height: 30px; 
+        } 
+         
+        .important-links img { 
+            width: 20px; 
+            height: 20px; 
+            margin-right: 8px; 
+            vertical-align: middle; 
+        } 
+         
+        .footer-bottom { 
+            text-align: center; 
+            padding: 10px; 
+            background-color: #091521; 
+            font-size: 14px; 
+            color: white; 
+        } 
+ 
+        /* Responsive adjustments */ 
+        @media (max-width: 768px) { 
+            .top-bar { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 10px; 
+            } 
+             
+            .separator { 
+                display: none; 
+            } 
+             
+            .footer { 
+                flex-direction: column; 
+                padding: 20px; 
+            } 
+             
+            .footer div { 
+                margin-bottom: 20px; 
+            } 
+             
+            .back-button-container { 
+                padding: 15px 20px; 
+            } 
+        } 
+    </style> 
+</head> 
+<body> 
+    <!-- Header --> 
+    <header class="top-bar"> 
+        <!-- Menu Section --> 
+        <div class="menu-section" onclick="toggleMenu()"> 
+            <span class="menu-icon">☰</span> 
+            <span class="menu-text">Menu</span> 
+        </div> 
+     
+        <span class="separator">|</span> 
+     
+        <!-- Toll-Free Section --> 
+        <div class="contact-section"> 
+            <img src="https://encrypted
+tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&s" 
+alt="Home Icon" class="icon home-icon"> 
+            <span>Toll Free - 1950</span> 
+        </div> 
+     
+        <span class="separator">|</span> 
+     
+        <!-- Social Media Section --> 
+        <div class="social-section"> 
+            <a href="https://www.facebook.com/"><img 
+src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" 
+alt="Facebook" class="icon"></a> 
+            <a href="https://www.instagram.com/accounts/login/?hl=en"><img 
+src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" 
+alt="Instagram" class="icon"></a> 
+            <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free
+vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg" alt="Twitter" 
+class="icon"></a> 
+            <a href="https://www.youtube.com/"><img 
+src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" 
+alt="YouTube" class="icon"></a> 
+        </div> 
+     
+        <span class="separator">|</span> 
+     
+        <!-- Accessibility Section --> 
+        <div class="accessibility-section"> 
+            <a>Screen Reader Access</a> 
+            <span class="separator">|</span> 
+            <a>Skip to Main Content</a> 
+        </div> 
+     
+        <span class="separator">|</span> 
+     
+        <!-- Font Size Controls --> 
+        <div class="font-size-section"> 
+            <button>English+</button> 
+            <span class="separator">|</span> 
+            <button>Hindi+</button> 
+        </div> 
+     
+        <span class="separator">|</span> 
+     
+        <!-- Logout Button --> 
+        <div class="language-section"> 
+            <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out of 
+your account"> 
+                Logout 
+            </button> 
+        </div> 
+    </header> 
+     
+    <!-- Back Button --> 
+    <div class="back-button-container"> 
+        <button class="back-button" onclick="window.history.back()"> 
+            Back 
+        </button> 
+    </div> 
+ 
+    <!-- Main Content --> 
+    <div class="main-content"> 
+        <div class="container"> 
+            <div id="login-section"> 
+                <h1>Know Your Outage</h1> 
+                 
+                <div class="form-group"> 
+                    <label>Email ID</label> 
+                    <input type="email" id="email" placeholder="Enter your email ID"> 
+                </div> 
+                 
+                <div class="form-group"> 
+                    <label>Password</label> 
+                    <input type="tel" id="mobile" placeholder="Password" 
+maxlength="10"> 
+                </div> 
+                 
+                <div class="form-group"> 
+                    <label>Captcha: <span id="captcha-text">A7B9C</span></label> 
+                    <input type="text" id="captcha-input" placeholder="Enter the captcha"> 
+                </div> 
+                 
+                <button id="view-outage-btn">VIEW OUTAGE STATUS</button> 
+            </div> 
+             
+            <div id="outage-section" style="display: none;"> 
+                <h1>Know Your Outage</h1> 
+                 
+                <div class="info-card"> 
+                    <div class="info-row"> 
+                        <span class="label">Outage Status:</span> 
+                        <span class="value" id="outage-status">No outage</span> 
+                    </div> 
+                     
+                    <div class="info-row"> 
+                        <span class="label">Reason for Outage:</span> 
+                        <span class="value" id="outage-reason">-</span> 
+                    </div> 
+                     
+                    <div class="info-row"> 
+                        <span class="label">Last Updated:</span> 
+                        <span class="value" id="last-updated">01-April-2025 10:30 AM</span> 
+                    </div> 
+                </div> 
+                 
+                <button id="report-issue-btn">REPORT AN ISSUE</button> 
+                <button id="back-btn">BACK</button> 
+                 
+                <div id="report-section" style="display: none; margin-top: 20px;"> 
+                    <textarea id="issue-description" placeholder="Describe the issue you're 
+experiencing..."></textarea> 
+                    <button id="submit-report-btn">SUBMIT REPORT</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+    <!-- Footer --> 
+    <footer class="footer"> 
+        <div> 
+            <h3>QUICK LINKS</h3> 
+            <ul> 
+                <li><a href="#">Home</a></li> 
+                <li><a href="#">Overview</a></li> 
+                <li><a href="#">Contact</a></li> 
+                <li><a href="#">Disclaimer & Terms</a></li> 
+                <li><a href="#">Privacy Policy</a></li> 
+            </ul> 
+        </div> 
+        <div> 
+            <h3>IMPORTANT LINKS</h3> 
+            <ul class="important-links"> 
+                <li><a href="#">Central Electricity Regulatory Commission</a></li> 
+                <li><a href="#">Ministry of Power Government of India</a></li> 
+                <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li> 
+                <li><a href="#">Central Electricity Authority</a></li> 
+                <li><a href="#">NTPC Limited</a></li> 
+                <li><a href="#">Central Power Research Institute (CPRI)</a></li> 
+                <li><a href="#">Damodar Valley Corporation (DVC)</a></li> 
+                <li><a href="#">National Power Training Institute (NPTI)</a></li> 
+            </ul> 
+        </div> 
+        <div> 
+            <h3>HEADQUARTERS</h3> 
+            <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, 
+Rafi Marg, New Delhi-1</p> 
+            <br> 
+            <h3>Terms & Conditions</h3> 
+            <p>Though all efforts have been made to ensure the accuracy and currency of the 
+content on this website, the same should not be construed as a statement of law or used for 
+any legal purposes. In case of any ambiguity or doubts, users are advised to verify / check 
+with the Department(s) and / or other source(s), and to obtain appropriate professional 
+advice.</p> 
+        </div> 
+        <div> 
+            <h3>About Government Of India Ministry Of Power</h3> 
+            <br> 
+            <p>This is the Official Portal of the Government of India, designed, developed and 
+hosted by the National Informatics Centre (NIC), a premier ICT organization of the 
+Government of India under the aegis of the Ministry of Electronics & Information 
+Technology.</p> 
+            <br> 
+            <div class="social-icons"> 
+                <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free
+vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid" alt="X"></a> 
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><img 
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.
+ svg/198px-Instagram_logo_2016.svg.png?20210403190622" alt="Instagram"></a> 
+                <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage
+basic_nav-header-signin"><img src="https://img.freepik.com/premium-vector/linkedin
+square-logo-vector_667864-115.jpg?w=826" alt="LinkedIn"></a> 
+                <a href="https://www.youtube.com/"><img 
+src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" 
+alt="YouTube"></a> 
+                <a href="https://www.facebook.com/"><img 
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.
+ svg/667px-2023_Facebook_icon.svg.png" alt="Facebook"></a> 
+            </div> 
+        </div> 
+    </footer> 
+    <div class="footer-bottom"> 
+        &copy; 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved. 
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi 
+Marg, New Delhi-1 
+            Hosted by National Informatics Centre (NIC) 
+            </p> 
+            <p>Last Updated on: 27 Mar 2025</p> 
+            <br> 
+    </div> 
+ 
+    <script> 
+    document.addEventListener('DOMContentLoaded', function() { 
+        // Elements 
+        const loginSection = document.getElementById('login-section'); 
+        const outageSection = document.getElementById('outage-section'); 
+        const viewOutageBtn = document.getElementById('view-outage-btn'); 
+        const backBtn = document.getElementById('back-btn'); 
+        const reportIssueBtn = document.getElementById('report-issue-btn'); 
+        const reportSection = document.getElementById('report-section'); 
+        const submitReportBtn = document.getElementById('submit-report-btn'); 
+         
+        // Possible outage scenarios 
+        const outageScenarios = [ 
+            { 
+                status: "No outage", 
+                reason: "-", 
+                updated: "Just now" 
+            }, 
+            { 
+                status: "Scheduled maintenance", 
+                reason: "Transformer upgrade in your area", 
+                updated: "Today, 8:00 AM" 
+            }, 
+            { 
+                status: "Power failure", 
+                reason: "Fault in distribution line", 
+                updated: "Today, 11:30 AM" 
+            }, 
+            { 
+                status: "Emergency repair", 
+                reason: "Underground cable damage", 
+                updated: "Today, 2:15 PM" 
+            }, 
+            { 
+                status: "Weather-related outage", 
+                reason: "Storm damage to power lines", 
+                updated: "Today, 4:45 PM" 
+            } 
+        ]; 
+         
+        // Generating captcha 
+        function generateCaptcha() { 
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789'; 
+            let captcha = ''; 
+            for (let i = 0; i < 5; i++) { 
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length)); 
+            } 
+            return captcha; 
+        } 
+         
+        let currentCaptcha = generateCaptcha(); 
+        document.getElementById('captcha-text').textContent = currentCaptcha; 
+         
+        function getRandomOutageScenario() { 
+            const randomIndex = Math.floor(Math.random() * outageScenarios.length); 
+            return outageScenarios[randomIndex]; 
+        } 
+         
+        // View Outage button click handler 
+        viewOutageBtn.addEventListener('click', function() { 
+            const email = document.getElementById('email').value; 
+            const mobile = document.getElementById('mobile').value; 
+            const captchaInput = document.getElementById('captcha-input').value; 
+
+            if (email !== 'hello@gmail.com') { 
+                alert('Invalid email address. Please try again.'); 
+                return; 
+            } 
+             
+            if (mobile !== '123456') { 
+                alert('Invalid Password. Please try again.'); 
+                return; 
+            } 
+             
+            if (captchaInput !== currentCaptcha) { 
+                alert('Invalid captcha. Please try again.'); 
+                // Generate new captcha 
+                currentCaptcha = generateCaptcha(); 
+                document.getElementById('captcha-text').textContent = currentCaptcha; 
+                document.getElementById('captcha-input').value = ''; 
+                return; 
+            } 
+             
+            loginSection.style.display = 'none'; 
+            outageSection.style.display = 'block'; 
+             
+            const outageData = getRandomOutageScenario(); 
+            document.getElementById('outage-status').textContent = outageData.status; 
+            document.getElementById('outage-reason').textContent = outageData.reason; 
+            document.getElementById('last-updated').textContent = outageData.updated; 
+        }); 
+         
+        // Back button click handler 
+        backBtn.addEventListener('click', function() { 
+            outageSection.style.display = 'none'; 
+            loginSection.style.display = 'block'; 
+             
+            // Reset form 
+            document.getElementById('email').value = ''; 
+            document.getElementById('mobile').value = ''; 
+            document.getElementById('captcha-input').value = ''; 
+             
+            // Generate new captcha 
+            currentCaptcha = generateCaptcha(); 
+            document.getElementById('captcha-text').textContent = currentCaptcha; 
+        }); 
+         
+        // Report Issue button click handler 
+        reportIssueBtn.addEventListener('click', function() { 
+            reportSection.style.display = reportSection.style.display === 'none' ? 'block' : 'none'; 
+        }); 
+         
+        // Submit Report button click handler 
+        submitReportBtn.addEventListener('click', function() { 
+            const issueDescription = document.getElementById('issue-description').value; 
+             
+            if (!issueDescription) { 
+                alert('Please describe the issue you\'re experiencing'); 
+                return; 
+            } 
+             
+            alert('Thank you for reporting the issue. Our team will look into it shortly.'); 
+            document.getElementById('issue-description').value = ''; 
+            reportSection.style.display = 'none'; 
+             
+            // Update status 
+            document.getElementById('outage-status').textContent = "Under investigation"; 
+            document.getElementById('outage-reason').textContent = "User-reported issue: " + 
+issueDescription.substring(0, 30) + "..."; 
+            document.getElementById('last-updated').textContent = new Date().toLocaleTimeString(); 
+        }); 
+    }); 
+
+    function toggleMenu() { 
+        alert("Menu Clicked! Implement menu functionality."); 
+    } 
+    </script> 
+</body> 
+</html> 
+
+

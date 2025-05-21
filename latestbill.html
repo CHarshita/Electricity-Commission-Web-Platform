@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Viewer</title>
+    <!-- <link rel="stylesheet" href="viewbill3_final.css"> -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar Styling */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366;
+            /* Blue background */
+            color: white;
+            padding: 15px 40px;
+            /* Increased horizontal padding */
+            width: 100%;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Centered Separator */
+        .separator {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 15px;
+            /* Increased from 10px */
+        }
+
+        /* Menu Section */
+        .menu-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 10px;
+            /* Increased from 5px */
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            /* Increased from 18px */
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Increased from 10px */
+        }
+
+        .contact-section .icon {
+            width: 24px;
+            /* Increased from 20px */
+            height: auto;
+        }
+
+        /* Social Section */
+        .social-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Increased from 10px */
+        }
+
+        .social-section .icon {
+            width: 24px;
+            /* Increased from 20px */
+            height: auto;
+        }
+
+        /* Accessibility Section */
+        .accessibility-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Increased from 10px */
+        }
+
+        /* Font Size Section */
+        .font-size-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Increased from 10px */
+        }
+
+        .font-size-section button {
+            padding: 6px 12px;
+            /* Increased from 5px 10px */
+            border: 1px solid #000;
+            background-color: white;
+            /* White Background */
+            color: #003366;
+            /* Blue Text */
+            cursor: pointer;
+            font-size: 16px;
+            /* Added font size */
+        }
+
+        .font-size-section button:hover {
+            background-color: #f0f0f0;
+            /* Light Gray on Hover */
+        }
+
+        /* Language Section */
+        .language-section {
+            margin-left: 30px;
+            /* Increased from 20px */
+        }
+
+        .language-section button {
+            background-color: #ff007f;
+            /* Pink */
+            border: none;
+            color: white;
+            padding: 6px 18px;
+            /* Increased from 5px 15px */
+            cursor: pointer;
+            font-size: 16px;
+            /* Added font size */
+        }
+
+        .language-section button:hover {
+            background-color: #e60073;
+            /* Slightly Darker Pink */
+        }
+
+        /* Back button css */
+        .back-button {
+            position: absolute;
+            /* Position it relative to the page */
+            top: 80px;
+            /* Adjusted from 70px */
+            left: 40px;
+            /* Adjusted from 20px to align with header padding */
+            background-color: #003366;
+            /* Blue background */
+            color: white;
+            /* White text */
+            padding: 12px 25px;
+            /* Increased from 10px 20px */
+            font-size: 16px;
+            /* Font size for readability */
+            border: none;
+            /* Remove border */
+            border-radius: 5px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+        }
+
+        .back-button:hover {
+            background-color: #002244;
+            /* Darker blue on hover */
+        }
+
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            padding: 40px 20px 200px;
+            min-height: 1500px;
+        }
+
+        /* View your bill css */
+        .container {
+            max-width: 950px;
+            margin: 80px auto 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .header {
+            background-color: #0099e5;
+            color: white;
+            padding: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 18px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #0099e5;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #0099e5;
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #0077b3;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .bill-details {
+            display: none;
+            padding: 40px;
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 18px;
+        }
+
+        .bill-row:last-child {
+            border-bottom: none;
+        }
+
+        .bill-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #downloadBtn {
+            background-color: #0099e5;
+            margin-top: 35px;
+        }
+
+        #backBtn {
+            background-color: #95a5a6;
+            margin-right: 20px;
+        }
+
+        /* Spacer element */
+        .footer-spacer {
+            height: 100px;
+            width: 100%;
+        }
+
+        /* Footer styling */
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 40px;
+            /* Increased horizontal padding to match header */
+            background-color: #0D1B2A;
+            color: white;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .footer h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin: 12px 0;
+            font-size: 16px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            color: #0099e5;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .important-links img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background-color: #091521;
+            font-size: 16px;
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top-bar">
+        <!-- Menu Section -->
+        <div class="menu-section" onclick="toggleMenu()">
+            <span class="menu-icon">☰</span>
+            <span class="menu-text">Menu</span>
+        </div>
+
+        <span class="separator">|</span> <!-- Centered Separator -->
+
+        <!-- Toll-Free Section -->
+        <div class="contact-section">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&s"
+                alt="Home Icon" class="icon home-icon">
+            <span>Toll Free - 1950</span>
+        </div>
+
+        <span class="separator">|</span> <!-- Centered Separator -->
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <a href="https://www.facebook.com/"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook"
+                    class="icon"></a>
+            <a href="https://www.instagram.com/accounts/login/?hl=en"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+                    class="icon"></a>
+            <a href="https://x.com/?lang=en"><img
+                    src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg"
+                    alt="Twitter" class="icon"></a>
+            <a href="https://www.youtube.com/"><img
+                    src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"
+                    class="icon"></a>
+        </div>
+
+        <span class="separator">|</span> <!-- Centered Separator -->
+
+        <!-- Accessibility Links -->
+        <div class="accessibility-section">
+            <a>Screen Reader Access</a>
+            <span class="separator">|</span>
+            <a>Skip to Main Content</a>
+        </div>
+
+        <span class="separator">|</span> <!-- Centered Separator -->
+
+        <!-- Font Size Controls -->
+        <div class="font-size-section">
+            <button>English+</button>
+            <span class="separator">|</span>
+            <button>Hindi+</button>
+        </div>
+
+        <span class="separator">|</span> <!-- Centered Separator -->
+
+        <!-- Logout Button -->
+        <div class="language-section">
+            <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out of your account">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <button class="back-button" onclick="goBack()">Back</button>
+
+    <div class="container">
+        <div class="header">View Your Latest Electricity Bill</div>
+
+        <!-- Bill Entry Form -->
+        <div id="formContainer" class="form-container">
+            <div class="form-group">
+                <label for="emailId">Email ID</label>
+                <input type="email" id="emailId" placeholder="Enter your email ID">
+                <div id="emailError" class="error"></div>
+            </div>
+
+            <!-- Taking password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <div id="passwordError" class="error"></div>
+            </div>
+
+            <button id="viewBillBtn" class="btn">View Bill</button>
+        </div>
+
+        <!-- Bill Details Section -->
+        <div id="billDetails" class="bill-details">
+            <div class="bill-row">
+                <span class="bill-label">Consumer Number:</span>
+                <span id="consumerNumber"></span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Billing Month:</span>
+                <span id="billingMonth"></span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Total Amount Due:</span>
+                <span id="totalAmount"></span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Due Date:</span>
+                <span id="dueDate"></span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Units Consumed:</span>
+                <span id="unitsConsumed"></span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Billing Status:</span>
+                <span id="billingStatus"></span>
+            </div>
+
+            <div>
+                <button id="backBtn" class="btn">Back</button>
+                <button id="downloadBtn" class="btn">Download Bill (PDF)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            <h3>QUICK LINKS</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Disclaimer & Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>IMPORTANT LINKS</h3>
+            <ul class="important-links">
+                <li><a href="#">Central Electricity Regulatory Commission</a></li>
+                <li><a href="#">Ministry of Power Government of India</a></li>
+                <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li>
+                <li><a href="#">Central Electricity Authority</a></li>
+                <li><a href="#">NTPC Limited</a></li>
+                <li><a href="#">Central Power Research Institute (CPRI)</a></li>
+                <li><a href="#"></a> Damodar Valley Corporation (DVC)</li>
+                <li><a href="#">National Power Training Institute (NPTI)</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>HEADQUARTERS</h3>
+            <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+            <br>
+            <h3>Terms & Conditions</h3>
+            <p>Though all efforts have been made to ensure the accuracy and currency of the content on this website, the
+                same should not be construed as a statement of law or used for any legal purposes. In case of any
+                ambiguity or doubts, users are advised to verify / check with the Department(s) and / or other
+                source(s), and to obtain appropriate professional advice.</p>
+        </div>
+        <div>
+            <h3>About Government Of India Ministry Of Power</h3>
+            <br>
+            <p>This is the Official Portal of the Government of India, designed, developed and hosted by the National
+                Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the
+                Ministry of Electronics & Information Technology.</p>
+            <br>
+            <div class="social-icons">
+                <a href="https://x.com/?lang=en"><img
+                        src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid"
+                        alt="X"></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622"
+                        alt="Instagram"></a>
+                <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><img
+                        src="https://img.freepik.com/premium-vector/linkedin-square-logo-vector_667864-115.jpg?w=826"
+                        alt="LinkedIn"></a>
+                <a href="https://www.youtube.com/"><img
+                        src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png"
+                        alt="Facebook"></a>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        &copy; 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved.
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1
+            Hosted by National Informatics Centre (NIC)
+        </p>
+        <p>Last Updated on: 27 Mar 2025</p>
+        <br>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const viewBillBtn = document.getElementById('viewBillBtn');
+            const backBtn = document.getElementById('backBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            const formContainer = document.getElementById('formContainer');
+            const billDetails = document.getElementById('billDetails');
+
+            const emailInput = document.getElementById('emailId');
+            const passwordInput = document.getElementById('password');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+
+            // Sample bill data
+            const sampleBill = {
+                consumerNumber: 'EL12345678',
+                billingMonth: 'March 2025',
+                totalAmount: '₹1,875.50',
+                dueDate: '15-April-2025',
+                unitsConsumed: '342 kWh',
+                billingStatus: 'Pending'
+            };
+
+            // Display bill details
+            function displayBillDetails() {
+                document.getElementById('consumerNumber').textContent = sampleBill.consumerNumber;
+                document.getElementById('billingMonth').textContent = sampleBill.billingMonth;
+                document.getElementById('totalAmount').textContent = sampleBill.totalAmount;
+                document.getElementById('dueDate').textContent = sampleBill.dueDate;
+                document.getElementById('unitsConsumed').textContent = sampleBill.unitsConsumed;
+                document.getElementById('billingStatus').textContent = sampleBill.billingStatus;
+
+                formContainer.style.display = 'none';
+                billDetails.style.display = 'block';
+            }
+
+            // View Bill button click handler
+            viewBillBtn.addEventListener('click', function () {
+                let isValid = true;
+
+                // Validate email - only accept hello@gmail.com
+                if (emailInput.value !== 'hello@gmail.com') {
+                    emailError.textContent = 'Invalid email address';
+                    isValid = false;
+                } else {
+                    emailError.textContent = '';
+                }
+
+                // Validate password 123456
+                if (passwordInput.value !== '123456') {
+                    passwordError.textContent = 'Invalid password';
+                    isValid = false;
+                } else {
+                    passwordError.textContent = '';
+                }
+
+                // If form is valid, show bill details
+                if (isValid) {
+                    displayBillDetails();
+                }
+            });
+
+            // Back button click handler
+            backBtn.addEventListener('click', function () {
+                formContainer.style.display = 'block';
+                billDetails.style.display = 'none';
+            });
+
+            // Download button click handler
+            downloadBtn.addEventListener('click', function () {
+                alert('Downloading bill as PDF...');
+            });
+        });
+
+        function toggleMenu() {
+            alert("Menu Clicked! Implement menu functionality.");
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
+

@@ -1,0 +1,647 @@
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Payment Options</title>
+    <style>
+        /* Reset and Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .back-button {
+            position: relative;
+            margin: 20px;
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #002244;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .separator {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .menu-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-icon {
+            font-size: 18px;
+        }
+
+        .contact-section, 
+        .social-section, 
+        .accessibility-section,
+        .font-size-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 20px;
+            height: auto;
+        }
+
+        .font-size-section button {
+            padding: 5px 10px;
+            border: 1px solid #000;
+            background-color: white;
+            color: #003366;
+            cursor: pointer;
+        }
+
+        .font-size-section button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .language-section {
+            margin-left: 20px;
+        }
+
+        .language-section button {
+            background-color: #ff007f;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+        .language-section button:hover {
+            background-color: #e60073;
+        }
+
+        /* Payment Page Styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .icon-circle i {
+            color: #003366;
+            font-size: 18px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .payment-card {
+            width: 300px;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .payment-card h3 {
+            margin-top: 0;
+            color: #003366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+        }
+
+        .qr-code img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .qr-instructions {
+            margin: 15px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .pay-button {
+            background-color: #0099cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .pay-button:hover {
+            background-color: #0077aa;
+        }
+
+        .card-form {
+            margin-top: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .expiry-cvv {
+            display: flex;
+            gap: 15px;
+        }
+
+        .expiry-cvv div {
+            flex: 1;
+        }
+
+        .card-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 25px;
+            background-color: #eee;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .popup-message {
+            margin: 20px 0;
+            color: #1a7f1a;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background-color: #0D1B2A;
+            color: white;
+        }
+
+        .footer > div {
+            flex: 1;
+            min-width: 250px;
+            margin: 15px;
+        }
+
+        .footer h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer ul li {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer p {
+            line-height: 1.6;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px;
+            background-color: #091521;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .separator {
+                display: none;
+            }
+            
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer {
+                flex-direction: column;
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--HEADER HTML-->
+    <header class="top-bar">
+        <!-- Menu Section -->
+        <div class="menu-section" onclick="toggleMenu()">
+            <span class="menu-icon">☰</span>
+            <span class="menu-text">Menu</span>
+        </div>
+
+        <span class="separator">|</span>
+
+        <!-- Toll-Free Section -->
+        <div class="contact-section">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&amp;s" alt="Home Icon" class="icon home-icon">
+            <span>Toll Free - 1950</span>
+        </div>
+
+        <span class="separator">|</span>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook" class="icon"></a>
+            <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="icon"></a>
+            <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg" alt="Twitter" class="icon"></a>
+            <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube" class="icon"></a>
+        </div>
+
+        <span class="separator">|</span>
+
+        <!-- Accessibility Links -->
+        <div class="accessibility-section">
+            <a>Screen Reader Access</a>
+            <span class="separator">|</span>
+            <a>Skip to Main Content</a>
+        </div>
+
+        <span class="separator">|</span>
+
+        <!-- Font Size Controls -->
+        <div class="font-size-section">
+            <button>English+</button>
+            <span class="separator">|</span>
+            <button>Hindi+</button>
+        </div>
+
+        <span class="separator">|</span>
+
+        <!-- Logout Button -->
+        <div class="language-section">
+            <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out of your account">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <button class="back-button" onclick="goBack()">Back</button>
+
+    <!---Payment Page Content-->
+    <div class="container">
+        <div class="section-header">
+            <div class="icon-circle">
+                <i class="fas fa-credit-card"></i>
+            </div>
+            <h2>Payment Options</h2>
+        </div>
+
+        <div class="payment-options">
+            <div class="payment-card">
+                <h3><i class="fas fa-mobile-alt"></i> QR Scan Payment</h3>
+                <div class="qr-code"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&amp;data=https://example.com/pay&amp;t=1743576739142" alt="QR Code"></div>
+                <div class="qr-instructions">
+                    <p>Scan this QR code with your payment app to pay instantly</p>
+                    <p>Supports UPI, Paytm, PhonePe, Google Pay and more</p>
+                </div>
+                <button class="pay-button">Refresh QR Code</button>
+            </div>
+
+            <div class="payment-card">
+                <h3><i class="far fa-credit-card"></i> Card Payment</h3>
+                <div class="card-form">
+                    <div class="input-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="card-name">Cardholder Name</label>
+                        <input type="text" id="card-name" placeholder="Name on card">
+                    </div>
+
+                    <div class="expiry-cvv">
+                        <div class="input-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="XXX">
+                        </div>
+                    </div>
+
+                    <button id="payNowBtn" class="pay-button">Pay Now</button>
+
+                    <div class="card-icons">
+                        <div class="card-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" width="30"></div>
+                        <div class="card-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" width="30"></div>
+                        <div class="card-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" width="30"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentSuccessPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">×</span>
+            <p class="popup-message">Payment Successful!</p>
+            <i class="fas fa-check-circle" style="font-size: 50px; color: #1a7f1a; margin: 15px 0;"></i>
+            <p>Your transaction has been completed successfully.</p>
+        </div>
+    </div>
+
+    <!--footer html-->
+    <footer class="footer">
+        <div>
+            <h3>QUICK LINKS</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Disclaimer &amp; Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>IMPORTANT LINKS</h3>
+            <ul>
+                <li><a href="#">Central Electricity Regulatory Commission</a></li>
+                <li><a href="#">Ministry of Power Government of India</a></li>
+                <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li>
+                <li><a href="#">Central Electricity Authority</a></li>
+                <li><a href="#">NTPC Limited</a></li>
+                <li><a href="#">Central Power Research Institute (CPRI)</a></li>
+                <li><a href="#">Damodar Valley Corporation (DVC)</a></li>
+                <li><a href="#">National Power Training Institute (NPTI)</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>HEADQUARTERS</h3>
+            <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+            <h3>Terms &amp; Conditions</h3>
+            <p>Though all efforts have been made to ensure the accuracy and currency of the content on this website, the same should not be construed as a statement of law or used for any legal purposes.</p>
+        </div>
+        <div>
+            <h3>About Government Of India Ministry Of Power</h3>
+            <p>This is the Official Portal of the Government of India, designed, developed and hosted by the National Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the Ministry of Electronics &amp; Information Technology.</p>
+            <div class="social-icons">
+                <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid" alt="X"></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622" alt="Instagram"></a>
+                <a href="https://www.linkedin.com/login?fromSignIn=true&amp;trk=guest_homepage-basic_nav-header-signin"><img src="https://img.freepik.com/premium-vector/linkedin-square-logo-vector_667864-115.jpg?w=826" alt="LinkedIn"></a>
+                <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        © 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved.
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+        <p>Hosted by National Informatics Centre (NIC)</p>
+        <p>Last Updated on: 27 Mar 2025</p>
+    </div>
+
+    <script>
+        // Main page script 
+        function toggleMenu() {
+            alert("Menu Clicked! Implement menu functionality.");
+        }
+        
+        // Function to load QR Code Image
+        function loadQRCode() {
+            const qrContainer = document.querySelector('.qr-code');
+            const qrImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsQh8X389XL5cnKAdFfN6BE-vyEm1C3G_zJw&s';
+            // Replace with your payment link
+            const timestamp = new Date().getTime(); // Generate a unique timestamp
+            qrContainer.innerHTML = `<img src="${qrImageUrl}&t=${timestamp}" alt="QR Code">`;
+        }
+
+        // Load QR Code on page load
+        document.addEventListener('DOMContentLoaded', loadQRCode);
+
+        // Refresh QR Code when button is clicked
+        document.querySelector(".payment-card:nth-child(1) .pay-button").addEventListener("click", loadQRCode);
+
+        // Get the popup element
+        const paymentSuccessPopup = document.getElementById("paymentSuccessPopup");
+
+        // Get the close button element
+        const closeButton = document.querySelector(".close-button");
+
+        // Get the Pay Now button
+        const payNowBtn = document.getElementById("payNowBtn");
+
+        // Function to show the popup
+        function showPopup() {
+            paymentSuccessPopup.style.display = "block";
+        }
+
+        // Function to hide the popup
+        function hidePopup() {
+            paymentSuccessPopup.style.display = "none";
+        }
+
+        // Close the popup when the close button is clicked
+        closeButton.addEventListener("click", hidePopup);
+
+        // Close the popup if the user clicks outside of it
+        window.addEventListener("click", function(event) {
+            if (event.target == paymentSuccessPopup) {
+                hidePopup();
+            }
+        });
+
+        // Handle Pay Now button click
+        payNowBtn.addEventListener("click", function() {
+            const cardNumber = document.getElementById("card-number").value;
+            const cardName = document.getElementById("card-name").value;
+            const expiry = document.getElementById("expiry").value;
+            const cvv = document.getElementById("cvv").value;
+
+            // Simple validation
+            if (!cardNumber || !cardName || !expiry || !cvv) {
+                alert("Please fill in all card details");
+                return;
+            }
+
+            // Show payment success popup
+            showPopup();
+
+            // Clear the input fields after payment
+            document.getElementById("card-number").value = '';
+            document.getElementById("card-name").value = '';
+            document.getElementById("expiry").value = '';
+            document.getElementById("cvv").value = '';
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body></html>

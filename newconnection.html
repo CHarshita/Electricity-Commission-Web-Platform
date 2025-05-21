@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Connection</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0; /* Remove default margin */
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styles */
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Top Bar Styling */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366; /* Blue background */
+            color: white;
+            padding: 10px 20px;
+            
+        }
+        
+        /* Centered Separator */
+        .separator {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-icon {
+            font-size: 18px;
+        }
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Social Section */
+        .social-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Accessibility Section */
+        .accessibility-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Font Size Section */
+        .font-size-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .font-size-section button {
+            padding: 5px 10px;
+            border: 1px solid #000;
+            background-color: white; /* White Background */
+            color: #003366; /* Blue Text */
+            
+            cursor: pointer;
+        }
+        
+        .font-size-section button:hover {
+            background-color: #f0f0f0; /* Light Gray on Hover */
+        }
+        
+        /* Language Section */
+        .language-section {
+            margin-left: 20px;
+        }
+        
+        .language-section button {
+            background-color: #ff007f; /* Pink */
+            border: none;
+            color: white;
+            padding: 5px 15px;
+           
+            cursor: pointer;
+        }
+        
+        .language-section button:hover {
+            background-color: #e60073; /* Slightly Darker Pink */
+        }
+
+        /* Footer Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white; /* Set a neutral background for the main content */
+    color: black; /* Adjust text color accordingly */
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    background-color: #0D1B2A; /* Keep the footer blue */
+    color: white; /* Ensure text remains readable */
+}
+
+.footer div {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+.footer h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+.footer ul li {
+    margin: 8px 0;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+.social-icons a {
+    display: inline-block;
+    margin: 5px;
+}
+.social-icons img {
+    width: 30px;
+    height: 30px;
+}
+.important-links img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    background-color: #091521;
+    font-size: 14px;
+    color: white;
+}
+
+
+        /* Main Content Styles */
+        .container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 700px; 
+            width: 90%; 
+            margin: 20px auto; /* Center the container */
+        }
+
+        .tab-navigation {
+            display: flex;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 15px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .connection-content > .tab-panel {
+            display: none;
+            padding-top: 20px;
+        }
+
+        .connection-content > .tab-panel.active {
+            display: block;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .online-registration-link {
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .online-registration-link:hover {
+            text-decoration: underline;
+        }
+
+        .accordion {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px; /* Space between accordions */
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .accordion-header {
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 10px 15px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .accordion-content {
+            padding: 15px;
+            display: none;
+            border-top: 1px solid #eee;
+        }
+
+        .accordion-header[aria-expanded="true"] + .accordion-content {
+            display: block;
+        }
+        .footer p {
+            color: white; /* Set footer paragraph text color to white */
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 10px;
+            background-color: #091521;
+            font-size: 14px;
+            color: white; /* Set footer bottom text color to white */
+        }
+        .back-button {
+            position: absolute; /* Position it relative to the page */
+            top: 70px; /* Adjust to place it below the header */
+            left: 20px; /* Align it to the top-left corner */
+            background-color: #003366; /* Blue background */
+            color: white; /* White text */
+            padding: 10px 20px; /* Add padding for better appearance */
+            font-size: 16px; /* Font size for readability */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .back-button:hover {
+            background-color: #002244; /* Darker blue on hover */
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="top-bar">
+        <!-- Menu Section -->
+        <div class="menu-section" onclick="toggleMenu()">
+          <span class="menu-icon">☰</span>
+          <span class="menu-text">Menu</span>
+        </div>
+        |
+        <!-- Toll-Free Section -->
+        <div class="contact-section">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&s" alt="Home Icon" class="icon home-icon">
+          <span>Toll Free - 1950</span>
+        </div>
+        |
+        <!-- Social Media Section -->
+        <div class="social-section">
+          <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png" alt="Facebook" class="icon"></a>
+          <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622" alt="Instagram" class="icon"></a>
+          <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid" alt="Twitter" class="icon"></a>
+          <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube" class="icon"></a>
+    
+        </div>
+        
+        <!-- Accessibility Links -->
+        <div class="accessibility-section">
+            |
+          <a>Screen Reader Access</a> |   
+          <a>Skip to Main Content</a> |
+        </div>
+        
+        <!-- Font Size Controls -->
+        <div class="font-size-section">
+            <button>English+</button>
+            <span class="separator">|</span>
+            <button>Hindi+</button>
+          </div>
+          <span class="separator">|</span>
+        <!-- Sign In Button -->
+    <div class="language-section">
+      <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out to your account">
+          Logout
+      </button>
+    </div>
+    </header>
+    <br>
+    <button class="back-button" onclick="goBack()">Back</button>
+    <div class="container">
+        <div class="connection-content">
+            <div class="tab-navigation">
+                <button class="tab active" data-tab="domestic">Domestic (LT)</button>
+                <button class="tab" data-tab="non-domestic">Non-Domestic (LT)</button>
+            </div>
+
+            <div id="domestic" class="tab-panel active">
+                <h2>Getting a Domestic Connection</h2>
+                <p>Thank you for choosing to engage with the largest Public Sector Undertaking in the electricity sector and for giving us the opportunity to serve you.
+                     We kindly request that you carefully review the instructions before filling out the application form.</p>
+                <a href="login.php" class="#">Click here for Registration</a>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="step1-content">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 1</span>
+                        </button>
+                        <div id="step1-content" class="accordion-content">
+                            <p> Submit Your Application
+                                Apply online. Fill out the application form and submit the required documents:
+                                ✔ Proof of Identity (Aadhar, PAN, Voter ID)
+                                ✔ Proof of Address (Ration Card, Property Tax Receipt)
+                                ✔ Ownership Document or No Objection Certificate (NOC) from the landlord (if rented)
+                                ✔ Load requirement details
+                            
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="step2-content">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 2</span>
+                        </button>
+                        <div id="step2-content" class="accordion-content">
+                            <p> Inspection & Approval
+                                Our team will inspect your premises to check the feasibility of the connection. Upon approval, you will receive a confirmation.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="step3-content">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 3</span>
+                        </button>
+                        <div id="step3-content" class="accordion-content">
+                            <p>Payment of Charges
+                                Make the required payments online or offline:
+                                 Security Deposit
+                                 Connection Charges
+                                Service Line Cost (if applicable)</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="step4-content">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 4</span>
+                        </button>
+                        <div id="step4-content" class="accordion-content">
+                            <p>Once the payment is received, we will install the electricity meter and activate your connection.
+                                ✅ Your home is now powered with electricity!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="non-domestic" class="tab-panel">
+                <h2>Getting a Non-Domestic Connection</h2>
+                <p>Thank you for choosing to engage with the largest Public Sector Undertaking in the electricity sector and for giving us the opportunity to serve you.
+                    We kindly request that you carefully review the instructions before filling out the application form.</p>
+                <a href="login.php" class="#">Click here for Registration</a>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="nonrescollapse1">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 1</span>
+                        </button>
+                        <div id="nonrescollapse1" class="accordion-content">
+                            <p>Application Submission
+                                Apply online through the official portal.
+                                Fill out the non-domestic electricity connection form and submit required documents:
+                                ✔ Business Registration Certificate (if applicable)
+                                ✔ Proof of Identity (Aadhar, PAN, Company Registration, etc.)
+                                ✔ Proof of Address (Property Tax, Rent Agreement, etc.)
+                                ✔ Load Requirement Details & Electrical Layout (if required) 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="nonrescollapse2">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 2</span>
+                        </button>
+                        <div id="nonrescollapse2" class="accordion-content">
+                            <p>Inspection & Feasibility Assessment
+                                A technical team will inspect the premises to assess the feasibility of the connection.
+                                The inspection ensures compliance with safety regulations and verifies the required electrical load.
+                                Upon approval, an official confirmation will be sent via SMS, email, or notice</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="nonrescollapse3">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 3</span>
+                        </button>
+                        <div id="nonrescollapse3" class="accordion-content">
+                            <p>Pay the necessary charges as per the sanctioned load and connection type, including:
+                            Security Deposit
+                            Connection Charges
+                            Service Line Charges (if applicable)
+                            Payment can be made online through card and QR code</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false" aria-controls="nonrescollapse4">
+                            <span class="icon-block">
+                                <span class="arrow-icon">&gt;</span>
+                            </span>
+                            <span class="title-text">Step 4</span>
+                        </button>
+                        <div id="nonrescollapse4" class="accordion-content">
+                            <p>Meter Installation & Power Supply Activation
+                                After payment confirmation, the department will install the electricity meter and connect the service line.
+                                Once installed, the power supply will be activated, and the connection details will be shared with the applicant.
+                                ✅ Your commercial/non-domestic premises are now powered with electricity!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!--Footer-->
+   <footer class="footer">
+    <div>
+        <h3>QUICK LINKS</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Disclaimer & Terms</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+    </div>
+    <div>
+        <h3>IMPORTANT LINKS</h3>
+        <ul class="important-links">
+            <li><a href="#">Central Electricity Regulatory Commission</a></li>
+            <li><a href="#">Ministry of Power Government of India</a></li>
+            <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li>
+            <li><a href="#">Central Electricity Authority</a></li>
+            <li><a href="#">NTPC Limited</a></li>
+            <li><a href="#">Central Power Research Institute (CPRI)</a></li>
+            <li><a href="#">Damodar Valley Corporation (DVC)</a></li>
+            <li><a href="#">National Power Training Institute (NPTI)</a></li>
+        </ul>
+    </div>
+    <div>
+        <h3>HEADQUARTERS</h3>
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+        <br>
+        <h3>Terms & Conditions</h3>
+        <p>Though all efforts have been made to ensure the accuracy and currency of the content on this website, the same should not be construed as a statement of law or used for any legal purposes. In case of any ambiguity or doubts, users are advised to verify / check with the Department(s) and / or other source(s), and to obtain appropriate professional advice.</p>
+    </div>
+    <div>
+        <h3>About Government Of India Ministry Of Power</h3>
+        <br>
+        <p>This is the Official Portal of the Government of India, designed, developed and hosted by the National Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the Ministry of Electronics & Information Technology.</p>
+        <br>
+        <div class="social-icons">
+            <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid" alt="X"></a>
+            <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><img src="https://img.freepik.com/premium-vector/linkedin-square-logo-vector_667864-115.jpg?w=826" alt="LinkedIn"></a>
+            <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"></a>
+            <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png" alt="Facebook"></a>
+        </div>
+       </div>
+    </footer>
+    <div class="footer-bottom" style="color: white;">
+        &copy; 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved.
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1. Hosted by National Informatics Centre (NIC)</p>
+        <p>Last Updated on: 27 Mar 2025</p>
+        <br>
+    </div>
+
+ 
+    <script>
+        function goBack() {
+        window.history.back();
+    }
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+        
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+        
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    const contentId = this.getAttribute('aria-controls');
+                    const content = document.getElementById(contentId);
+        
+                    this.setAttribute('aria-expanded', !expanded);
+                    content.style.display = expanded ? 'none' : 'block';
+        
+                    const allHeaders = document.querySelectorAll('.accordion-header');
+                    allHeaders.forEach(otherHeader => {
+                        if (otherHeader !== this && otherHeader.getAttribute('aria-expanded') === 'true') {
+                            otherHeader.setAttribute('aria-expanded', false);
+                            const otherContentId = otherHeader.getAttribute('aria-controls');
+                            const otherContent = document.getElementById(otherContentId);
+                            if (otherContent) {
+                                otherContent.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

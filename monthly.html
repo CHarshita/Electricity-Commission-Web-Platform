@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(0, 0, 0);
+            color: rgb(0, 0, 3);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 24px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 24%;
+            text-align: center;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            width: 70%;
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        canvas {
+            width: 500px !important;
+            height: 400px !important;
+        }
+
+        .month-selector {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .month-selector select,
+        .month-selector button {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .month-selector button {
+            margin-left: 10px;
+            background: #36A2EB;
+            color: white;
+        }
+
+        .table-container {
+            margin-top: 30px;
+            width: 70%;
+            margin: auto;
+            background: rgba(239, 239, 241, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid rgba(24, 16, 16, 0.5);
+        }
+
+        th {
+            background: rgba(31, 21, 21, 0.3);
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 255, 255);
+            
+            color: black;
+           
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #0D1B2A;
+            
+            color: white;
+            /* Ensure text remains readable */
+        }
+
+        .footer div {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .footer h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin: 8px 0;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .important-links img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px;
+            background-color: #091521;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Reset */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Top Bar Styling */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366; /* Blue background */
+            color: white;
+            padding: 10px 20px;
+            
+        }
+        
+        /* Centered Separator */
+        .separator {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        
+        /* Menu Section */
+        .menu-section {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-icon {
+            font-size: 18px;
+        }
+        
+        
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Social Section */
+        .social-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-section .icon {
+            width: 20px;
+            height: auto;
+        }
+        
+        /* Accessibility Section */
+        .accessibility-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Font Size Section */
+        .font-size-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .font-size-section button {
+            padding: 5px 10px;
+            border: 1px solid #000;
+            background-color: white; /* White Background */
+            color: #003366; /* Blue Text */
+           
+            cursor: pointer;
+        }
+        
+        .font-size-section button:hover {
+            background-color: #f0f0f0; /* Light Gray on Hover */
+        }
+        
+        /* Language Section */
+        .language-section {
+            margin-left: 20px;
+        }
+        
+        .language-section button {
+            background-color: #ff007f; /* Pink */
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .language-section button:hover {
+            background-color: #e60073; /* Slightly Darker Pink */
+        }
+        .logout-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .logout-container button {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .back-btn {
+            background:#003366;
+            color: white;
+        }
+
+        .logout-btn:hover, .back-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Header with Separators</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Header</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <!-- Menu Section -->
+    <div class="menu-section" onclick="toggleMenu()">
+        <span class="menu-icon">☰</span>
+        <span class="menu-text">Menu</span>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Toll-Free Section -->
+    <div class="contact-section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHrGfK6bLTnqRjOORgRJ_lcp07x14MQdGE9A&s" alt="Home Icon" class="icon home-icon">
+        <span>Toll Free - 1950</span>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Social Media Section -->
+    <div class="social-section">
+        <a href="https://www.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook" class="icon"></a>
+        <a href="https://www.instagram.com/accounts/login/?hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="icon"></a>
+        <a href="https://x.com/?lang=en"><img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg" alt="Twitter" class="icon"></a>
+        <a href="https://www.youtube.com/"><img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube" class="icon"></a>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Accessibility Links -->
+    <div class="accessibility-section">
+        <a >Screen Reader Access</a>
+        <span class="separator">|</span>
+        <a>Skip to Main Content</a>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Font Size Controls -->
+    <div class="font-size-section">
+        <button>English+</button>
+        <span class="separator">|</span>
+        <button>Hindi+</button>
+    </div>
+
+    <span class="separator">|</span> <!-- Centered Separator -->
+
+    <!-- Logout Button -->
+    <div class="language-section">
+        <button onclick="window.location.href='frontbeforelogin.php'" aria-label="Sign out of your account">
+            Logout
+        </button>
+    </div>
+</header>
+
+<script>
+    function toggleMenu() {
+        alert("Menu Clicked! Implement menu functionality.");
+    }
+</script>
+
+</body>
+</html>
+<script>
+    function toggleMenu() {
+        alert("Menu clicked! Implement menu functionality here.");
+    }
+</script>
+
+</body>
+</html>
+<div class="logout-container">
+    
+    <button class="back-btn" onclick="window.history.back()">Back</button>
+</div>
+
+    <div class="container">
+        <div class="header">MONTHLY DATA</div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Consumers</h3>
+                <p>140.855 Lakhs</p>
+            </div>
+            <div class="card">
+                <h3>Consumption</h3>
+                <p>2403.648 Mu</p>
+            </div>
+            <div class="card">
+                <h3>Demand</h3>
+                <p>1826.498 Crs</p>
+            </div>
+            <div class="card">
+                <h3>Collections</h3>
+                <p>₹ 2900 Crs</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="consumerChart"></canvas>
+        </div>
+
+        <div class="month-selector">
+            <label for="month">Select Month: </label>
+            <select id="month">
+                <option value="january">January</option>
+                <option value="february">February</option>
+                <option value="march">March</option>
+                <option value="april">April</option>
+                <option value="may">May</option>
+                <option value="june">June</option>
+                <option value="july">July</option>
+                <option value="august">August</option>
+                <option value="september">September</option>
+                <option value="october">October</option>
+                <option value="november">November</option>
+                <option value="december">December</option>
+            </select>
+            <button onclick="applyMonth()">Apply</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Consumers</th>
+                    <th>Consumption (Mu)</th>
+                    <th>Demand (Cr)</th>
+                </tr>
+                <tr>
+                    <td>Commercial</td>
+                    <td>204,232</td>
+                    <td>542.1</td>
+                    <td>410.5</td>
+                </tr>
+                <tr>
+                    <td>Domestic</td>
+                    <td>1,023,625</td>
+                    <td>1030.2</td>
+                    <td>920.3</td>
+                </tr>
+                <tr>
+                    <td>Industrial</td>
+                    <td>14,200</td>
+                    <td>350.5</td>
+                    <td>270.8</td>
+                </tr>
+                <tr>
+                    <td>Agriculture</td>
+                    <td>1,030</td>
+                    <td>200.7</td>
+                    <td>180.2</td>
+                </tr>
+                <tr>
+                    <td>Public Lighting</td>
+                    <td>40,023</td>
+                    <td>280.3</td>
+                    <td>250.9</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <footer class="footer">
+        <div>
+            <h3>QUICK LINKS</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Disclaimer & Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>IMPORTANT LINKS</h3>
+            <ul class="important-links">
+                <li><a href="#">Central Electricity Regulatory Commission</a></li>
+                <li><a href="#">Ministry of Power Government of India</a></li>
+                <li><a href="#">Central Electricity Regulatory Commission (CERC)</a></li>
+                <li><a href="#">Central Electricity Authority</a></li>
+                <li><a href="#">NTPC Limited</a></li>
+                <li><a href="#">Central Power Research Institute (CPRI)</a></li>
+                <li><a href="#"></a> Damodar Valley Corporation (DVC)</li>
+                <li><a href="#">National Power Training Institute (NPTI)</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>HEADQUARTERS</h3>
+            <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1</p>
+            <br>
+            <h3>Terms & Conditions</h3>
+            <p>Though all efforts have been made to ensure the accuracy and currency of the content on this website, the
+                same should not be construed as a statement of law or used for any legal purposes. In case of any
+                ambiguity or doubts, users are advised to verify / check with the Department(s) and / or other
+                source(s), and to obtain appropriate professional advice.</p>
+        </div>
+        <div>
+            <h3>About Government Of India Ministry Of Power</h3>
+            <br>
+            <p>This is the Official Portal of the Government of India, designed, developed and hosted by the National
+                Informatics Centre (NIC), a premier ICT organization of the Government of India under the aegis of the
+                Ministry of Electronics & Information Technology.</p>
+            <br>
+            <div class="social-icons">
+                <a href="https://x.com/?lang=en"><img
+                        src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid"
+                        alt="X"></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622"
+                        alt="Instagram"></a>
+                <a href="https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><img
+                        src="https://img.freepik.com/premium-vector/linkedin-square-logo-vector_667864-115.jpg?w=826"
+                        alt="LinkedIn"></a>
+                <a href="https://www.youtube.com/"><img
+                        src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/667px-2023_Facebook_icon.svg.png"
+                        alt="Facebook"></a>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        &copy; 2025 GOVERNMENT OF INDIA MINISTRY OF POWER Ltd. All rights reserved.
+        <p>This website belongs to Ministry of Power Govt. of India, Shram Shakti Bhawan, Rafi Marg, New Delhi-1
+            Hosted by National Informatics Centre (NIC)
+        </p>
+        <p>Last Updated on: 27 Mar 2025</p>
+        <br>
+    </div>
+
+  
+
+    <script>
+        const mockAPI = {
+            january: [500000, 2000000, 50000, 200000, 100000],
+            february: [100000, 1000000, 200000, 500000, 700000],
+            march: [800000, 3000000, 400000, 100000, 200000],
+            april: [300000, 500000, 100000, 800000, 400000],
+            may: [400000, 700000, 200000, 900000, 100000],
+            june: [600000, 700000, 800000, 900000, 100000],
+            july: [500000, 700000, 200000, 500000, 400000],
+            august: [200000, 100000, 900000, 600000, 400000],
+            september: [500000, 200000, 300000, 400000, 100000],
+            october: [100000, 900000, 800000, 600000, 700000],
+            november: [200000, 700000, 300000, 900000, 400000],
+            december: [100000, 600000, 800000, 400000, 100000]
+        };
+
+        let ctx = document.getElementById('consumerChart').getContext('2d');
+        let consumerChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Commercial', 'Domestic', 'Industrial', 'Agriculture', 'Public Lighting'],
+                datasets: [{
+                    data: mockAPI.january,
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        function applyMonth() {
+            let selectedMonth = document.getElementById('month').value;
+            consumerChart.data.datasets[0].data = mockAPI[selectedMonth];
+            consumerChart.update();
+        }
+    </script>
+
+</body>
+
+</html>
